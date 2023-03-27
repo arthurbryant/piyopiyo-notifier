@@ -1,0 +1,2 @@
+class SlackNotifer
+end
