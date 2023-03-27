@@ -6,7 +6,7 @@ require 'open-uri'
 class Piyopiyo
   def initialize
     @url = 'https://www.nerima-piyopiyo.com/piyopiyo/useddate/select/01.html'
-    @available_days = []
+    @all_available_days = []
   end
 
   # get all available days from the webpage
@@ -17,17 +17,17 @@ class Piyopiyo
       marks = slice.map { |td| td.text.gsub(/\s+/, '') }
       marks.each_with_index do |m, index|
         if (m == '○') || (m == '△')
-          @available_days << dt + ' ' + (index + 1).to_s + '枠は' + m + ' です'
+          @all_available_days << dt + ' ' + (index + 1).to_s + '枠は' + m + ' です'
         end
       end
     end
   end
 
-  def fliter_day(day)
-    @available_days = @available_days.select { |d| d.include?(day) }
+  def filter_by_day(day)
+    @all_available_days.select { |d| d.include?(day) }
   end
 
   def available_days
-    @available_days
+    @all_available_days
   end
 end
