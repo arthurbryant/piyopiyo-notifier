@@ -31,3 +31,14 @@ class Piyopiyo
     @all_available_days
   end
 end
+
+# execute the script
+if __FILE__ == $0
+  p = Piyopiyo.new
+  p.get_all_available_days
+  puts p.available_days
+  puts
+  puts "Available days on weekends:"
+  puts p.filter_by_day('（土）')
+  puts p.filter_by_day('（日）')
+end
