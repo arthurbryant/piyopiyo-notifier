@@ -6,3 +6,7 @@ class SlackNotifier
     notifier.ping message
   end
 end
+
+if __FILE__ == $0
+  SlackNotifier.send_message('test message')
+end
