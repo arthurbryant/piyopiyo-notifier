@@ -2,7 +2,7 @@
 
 require 'json'
 
-def hello(event:, context:)
+def notify(event:, context:)
   {
     statusCode: 200,
     body: {

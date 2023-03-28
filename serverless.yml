@@ -23,6 +23,8 @@ frameworkVersion: '3'
 provider:
   name: aws
   runtime: ruby2.7
+  environment:
+    slack_webhook_url: ${env:SLACK_WEBHOOK_URL}
 
 # you can overwrite defaults here
 #  stage: dev
@@ -60,8 +62,11 @@ provider:
 
 functions:
   hello:
-    handler: handler.hello
-#    The following are a few example events you can configure
+    handler: handler.notify
+    events:
+      - schedule: cron(27 9 * * ? *)
+
+        #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
 #    Check the event documentation for details
 #    events:
