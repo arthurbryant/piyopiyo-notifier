@@ -5,15 +5,13 @@ require 'open-uri'
 require 'awesome_print'
 
 class Piyopiyo
-  def initialize
-    @url = 'https://www.nerima-piyopiyo.com/piyopiyo/useddate/select/01.html'
-  end
+  URL = 'https://www.nerima-piyopiyo.com/piyopiyo/useddate/select/01.html'
 
   # get all available days from the webpage
-  def get_all_available_days
+  def self.get_all_available_days
     all_available_days = []
 
-    doc = Nokogiri::HTML(open(@url))
+    doc = Nokogiri::HTML(open(URL))
     doc.css('td').each_slice(4) do |slice|
       dt = slice.shift.text.gsub(/\s+/, '')
       marks = slice.map { |td| td.text.gsub(/\s+/, '') }
@@ -30,6 +28,5 @@ end
 
 # execute the script
 if __FILE__ == $0
-  p = Piyopiyo.new
-  ap p.get_all_available_days
+  ap Piyopiyo.get_all_available_days
 end
