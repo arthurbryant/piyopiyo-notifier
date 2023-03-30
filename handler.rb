@@ -1,13 +1,21 @@
 # frozen_string_literal: true
 
-require 'json'
+require_relative 'piyopiyo'
+require_relative 'day_filter'
+require_relative 'jp_holiday_generator'
 
-def notify(event:, context:)
-  {
-    statusCode: 200,
-    body: {
-      message: 'Go Serverless v1.0! Your function executed successfully!',
-      input: event
-    }.to_json
-  }
+def notify
+  all_available_days = Piyopiyo.get_all_available_days
+  jp_holidays = JpHolidayGenerator.generate
+  # filter for 土日祝
+  desired_off_days = ['（土）', '（日）'] + jp_holidays
+  messages = DayFilter.filter_by_day(all_available_days, desired_off_days)
+  if messages.empty?
+    puts 'No available days found. Do nothing!'
+  else
+    notifier = Slack::Notifier.new ENV['SLACK_WEBHOOK_URL']
+    notifier.ping messages.join("\n")
+  end
 end
+
+__FILE__ == $0 ? (ap notify) : nil
