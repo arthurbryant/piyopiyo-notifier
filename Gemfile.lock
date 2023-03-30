@@ -48,6 +48,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activesupport
   business_time
   holiday_jp
   httparty
