@@ -9,3 +9,4 @@ gem 'nokogiri'
 gem 'rubocop', require: false
 gem 'slack-notifier'
 gem 'business_time'
+gem 'holiday_jp'
