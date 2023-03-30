@@ -8,7 +8,6 @@ gem 'httparty'
 gem 'nokogiri'
 gem 'rubocop', require: false
 gem 'slack-notifier'
-gem 'business_time'
 gem 'holiday_jp'
 gem 'activesupport'
 gem 'awesome_print'
