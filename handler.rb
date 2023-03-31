@@ -13,7 +13,7 @@ def notify(event:, context:)
   if messages.empty?
     puts 'No available days found. Do nothing!'
   else
-    puts "send messages"
+    puts messages
   end
 end
 
