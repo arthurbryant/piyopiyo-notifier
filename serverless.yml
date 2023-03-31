@@ -24,7 +24,6 @@ provider:
   name: aws
   runtime: ruby2.7
   environment:
-    slack_webhook_url: ${env:SLACK_WEBHOOK_URL}
 
 # you can overwrite defaults here
 #  stage: dev
@@ -53,15 +52,23 @@ provider:
 #    variable1: value1
 
 # you can add packaging information here
-#package:
-#  patterns:
+package:
+  exclude:
+    - .git/**
+    - .serverless/**
+    - .bundle/**
+    - .bundle
+    - .bundle/config
+    - .bundle/config.lock
+    - vendor/**
+  #  patterns:
 #    - '!exclude-me.rb'
 #    - '!exclude-me-dir/**'
 #    - include-me.rb
 #    - include-me-dir/**
 
 functions:
-  hello:
+  notifier:
     handler: handler.notify
     events:
       - schedule: cron(27 9 * * ? *)

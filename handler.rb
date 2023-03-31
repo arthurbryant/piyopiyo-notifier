@@ -4,7 +4,7 @@ require_relative 'piyopiyo'
 require_relative 'day_filter'
 require_relative 'jp_holiday_generator'
 
-def notify
+def notify(event:, context:)
   all_available_days = Piyopiyo.get_all_available_days
   jp_holidays = JpHolidayGenerator.generate
   # filter for 土日祝
@@ -13,8 +13,7 @@ def notify
   if messages.empty?
     puts 'No available days found. Do nothing!'
   else
-    notifier = Slack::Notifier.new ENV['SLACK_WEBHOOK_URL']
-    notifier.ping messages.join("\n")
+    puts "send messages"
   end
 end
 
