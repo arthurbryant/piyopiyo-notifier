@@ -6,9 +6,31 @@
 
 https://www.city.nerima.tokyo.jp/kosodatekyoiku/kodomo/hoiku/itijiteki_hoiku/nyuuyoujiazukari.html
 
+# 使い方
+## Local
+```
+bundle config set --local path 'vendor/bundle' \ 
+bundle install
+
+export SLACK_WEBHOOK_URL="https://hooks.slack.com/services/XXXXXXXXX/XXXXXXXXX/XXXXXXXXXXXXXXXXXXXXXXXX"
+sls invoke local -f notifier
+```
+
+## AWS Lambda 
+1. Create a Slack Incoming Webhook
+https://api.slack.com/incoming-webhooks
+2. Set the webhook url to AWS Lambda's environment variable
+3. Deploy
+
+```
+sls deploy
+```
+
+
 # TODO
 - [x] List all the availalbe days
-- [ ] Filter the result
-- [ ] Send the result to Slack
-- [ ] Create a cron job
+- [x] Filter the result
+- [x] Send the result to Slack
+- [x] Create a cron job
 - [ ] Automatically book the day that you want
+- [ ] Line Notify
