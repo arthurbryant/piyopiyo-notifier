@@ -23,7 +23,7 @@ frameworkVersion: '3'
 provider:
   name: aws
   runtime: ruby2.7
-  environment:
+  environment: development
 
 # you can overwrite defaults here
 #  stage: dev
@@ -124,3 +124,4 @@ functions:
 #     NewOutput:
 #       Description: "Description for the output"
 #       Value: "Some output value"
+
