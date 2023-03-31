@@ -26,6 +26,8 @@ https://api.slack.com/incoming-webhooks
 sls deploy
 ```
 
+# 例
+- ![image](https://user-images.githubusercontent.com/853200/229153202-de74d802-e60e-4ec2-aa3a-a4af17b05414.png)
 
 # TODO
 - [x] List all the availalbe days
