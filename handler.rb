@@ -3,6 +3,7 @@
 require_relative 'piyopiyo'
 require_relative 'day_filter'
 require_relative 'jp_holiday_generator'
+require_relative 'slack_notifier'
 
 def notify(event:, context:)
   all_available_days = Piyopiyo.get_all_available_days
@@ -14,6 +15,8 @@ def notify(event:, context:)
     puts 'No available days found. Do nothing!'
   else
     puts messages
+    messages += ['', 'Click the following link to make a reservation:', Piyopiyo::URL]
+    SlackNotifier.send_message(messages.join("\n"))
   end
 end
 
